@@ -15,6 +15,7 @@ const PagenationContainer = styled.div`
 
 export default ({ data, pageContext }) => {
     const post = data.markdownRemark
+    const categories = data.allMarkdownRemark.edges.map(edge => edge.node.frontmatter.category)
 
     const disqusShortname = "junghanyoung-github-io";
     const disqusConfig = {
@@ -32,7 +33,10 @@ export default ({ data, pageContext }) => {
     // console.log('next:', nextLink)
 
     return (
-        <Layout>
+        <Layout
+            allPosts={data.allMarkdownRemark.edges}
+            categories={categories}
+        >
             <Helmet>
                 <title>{post.frontmatter.title}</title>
                 <meta name="og:title" content={post.frontmatter.title} />
@@ -58,6 +62,23 @@ export const query = graphql`
             frontmatter {
                 title
             }
+        }
+        allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+            edges {
+                node {
+                    id
+                    frontmatter {
+                        title
+                        category
+                        date(formatString: "DD MMMM, YYYY")
+                    }
+                    fields {
+                        slug
+                    }
+                    excerpt
+                }
+            }
+            totalCount
         }
     }
 `

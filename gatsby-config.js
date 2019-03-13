@@ -23,16 +23,9 @@ module.exports = {
                 path: `${__dirname}/src/`
             }
         },
-        {
-            resolve: `gatsby-plugin-categories`,
-            options: {
-                templatePath: path.join(__dirname, "/src/templates/category.js")
-            }
-        },
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-transformer-remark`,
-        `gatsby-plugin-emotion`,
         {
             resolve: 'gatsby-plugin-typography',
             options: {

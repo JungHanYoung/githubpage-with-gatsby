@@ -5,12 +5,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
-    if (node.frontmatter.category) {
-      const category = node.frontmatter.category
-      const categoryPath = `/category/${category}`
-      createNodeField({ node, name: 'categoryPath', value: categoryPath })
-      // console.log(node.frontmatter.category)
-    }
+    // if (node.frontmatter.category) {
+    //   const category = node.frontmatter.category
+    //   const categoryPath = `/category/${category}`
+    //   createNodeField({ node, name: 'categoryPath', value: categoryPath })
+    //   // console.log(node.frontmatter.category)
+    // }
     createNodeField({
       node,
       name: `slug`,
@@ -34,7 +34,6 @@ exports.createPages = ({ graphql, actions }) => {
               }
               fields {
                 slug
-                category
               }
             }
           }
@@ -45,8 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
     const categories = {}
     const posts = result.data.allMarkdownRemark.edges
     posts.forEach(({ node }, index) => {
-
-      const { title, date, category } = node.frontmatter
+      const { title, category } = node.frontmatter
 
       if (!categories[category]) {
         categories[category] = {
@@ -55,29 +53,27 @@ exports.createPages = ({ graphql, actions }) => {
       }
       const thisCategory = categories[category]
       thisCategory.posts.push({ id: node.id, slug: node.fields.slug, title })
+    })
+    createCategoryPage(createPage, categories);
+
+    posts.forEach(({ node }, index) => {
+
       const previous = index === posts.length - 1 ? null : posts[index + 1]
       const next = index === 1 ? null : posts[index - 1]
-
-      // createPage({
-      //   path: `/category/${category}`,
-      //   component: path.resolve('./src/templates/category.js'),
-      //   context: {
-      //     posts: thisCategory.posts
-      //   }
-      // })
 
       createPage({
         path: node.fields.slug,
         component: path.resolve('./src/templates/post.js'),
         context: {
           slug: node.fields.slug,
-          category: node.fields.category,
+          category: node.frontmatter.category,
           previous,
           next
         }
       })
     })
-    createCategoryPage(createPage, categories)
+    // createCategoryPage(createPage, categories)
+
     // console.log(JSON.stringify(result, null, 4))
   })
 }
