@@ -10,14 +10,36 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "disqus-react": "^1.0.5",
     "gatsby": "^2.1.29",
+    "gatsby-image": "^2.0.33",
+    "gatsby-plugin-categories": "^2.1.0",
+    "gatsby-plugin-emotion": "^4.0.6",
+    "gatsby-plugin-react-helmet": "^3.0.9",
+    "gatsby-plugin-sharp": "^2.0.28",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "gatsby-plugin-typography": "^2.2.9",
+    "gatsby-source-filesystem": "^2.0.24",
+    "gatsby-transformer-remark": "^2.3.2",
+    "gatsby-transformer-sharp": "^2.1.17",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-helmet": "^5.2.0",
+    "react-icons": "^3.5.0",
+    "react-typography": "^0.16.19",
+    "styled-components": "^4.1.3",
+    "typography": "^0.16.19",
+    "typography-theme-alton": "^0.16.19",
+    "typography-theme-fairy-gates": "^0.16.19",
+    "typography-theme-kirkham": "^0.16.19"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "prettier": "^1.16.4"
   },
   "repository": {
