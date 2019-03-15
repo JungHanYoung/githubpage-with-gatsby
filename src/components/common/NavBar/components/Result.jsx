@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import { rhythm } from '../../utils/typography'
-
+import styled from 'styled-components'
+import { rhythm } from '../../../../utils/typography';
 
 const Wrapper = styled.ul`
     display: block;
@@ -34,23 +34,25 @@ const ListItem = styled.li`
 `
 
 
-export default ({ items }) => {
-    // console.log(items)
+const Result = ({ items }) => {
+
+
+
     return (
         <Wrapper>
-            {items.map(item => {
-                console.log(item)
-                return (
-
-                    item.slug ? <Link to={item.slug}>
-                        <ListItem>
-                            {item.title}
-                        </ListItem>
-                    </Link> : <ListItem>
-                            {item.title}
-                        </ListItem>
-                )
-            })}
+            {items.length
+                ? items.map(item => <Link to={item.link}>
+                    <ListItem>
+                        {item.title}
+                    </ListItem>
+                </Link>)
+                : <ListItem>Not Found</ListItem>}
         </Wrapper>
     )
 }
+
+Result.propTypes = {
+    items: PropTypes.array
+}
+
+export default Result

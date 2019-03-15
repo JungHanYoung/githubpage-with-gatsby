@@ -6,7 +6,7 @@ import { rhythm } from '../utils/typography'
 
 import Footer from './Footer'
 import NavBar from './NavBar';
-import Header from './Main/Header';
+// import Header from './Main/Header';
 
 // const NavBar = styled.div`
 //     margin: 0 auto;
@@ -48,9 +48,6 @@ export default ({ allPosts, categories, children, category }) => {
                     <NavBar
                         allPosts={allPosts}
                         categories={categories}
-                    />
-                    <Header
-                        category={category}
                     />
                     <PostsContainer>
                         {children}

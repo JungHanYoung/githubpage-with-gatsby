@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 //     background-size: cover;
 // `
 
-export default ({ category }) => {
+export default ({ category = 'default' }) => {
     // console.log(category)
     // console.log(data)
 
@@ -61,15 +61,10 @@ export default ({ category }) => {
                     }
                 }
             `}
-                render={data => {
-                    console.log(data)
-                    return category ? <Img
-                        fixed={data[category].childImageSharp.fixed}
-                        alt={category}
-                    /> : <Img
-                            fixed={data.default.childImageSharp.fixed}
-                        />
-                }}
+                render={data => <Img
+                    fixed={data[category].childImageSharp.fixed}
+                    alt={category}
+                />}
             />
         </Wrapper>
     )

@@ -28,7 +28,7 @@ export default ({ data, pageContext }) => {
     prevLink = pageContext.previous ? pageContext.previous.node.fields.slug : null
     nextLink = pageContext.next ? pageContext.next.node.fields.slug : null
 
-    console.log(pageContext.previous.node.frontmatter.title)
+    // console.log(pageContext.previous.node.frontmatter.title)
     // console.log('prev:', prevLink)
     // console.log('next:', nextLink)
 

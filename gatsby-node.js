@@ -1,16 +1,24 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
+const categoryImg = {
+  react: 'react-logo.png',
+  spring: 'spring-logo.jpg',
+  javascript: 'javascript-logo.png',
+  default: 'default_blog_cover.jpg'
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
-    // if (node.frontmatter.category) {
-    //   const category = node.frontmatter.category
-    //   const categoryPath = `/category/${category}`
-    //   createNodeField({ node, name: 'categoryPath', value: categoryPath })
-    //   // console.log(node.frontmatter.category)
-    // }
+    if (node.frontmatter.category && Object.keys(categoryImg).includes(node.frontmatter.category)) {
+      const category = node.frontmatter.category
+
+      // const categoryPath = `/category/${category}`
+      createNodeField({ node, name: 'categoryImg', value: categoryImg[category] })
+      // console.log(node.frontmatter.category)
+    }
     createNodeField({
       node,
       name: `slug`,

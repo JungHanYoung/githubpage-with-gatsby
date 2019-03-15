@@ -63,8 +63,15 @@ export default ({ allPosts, categories }) => {
             ({
                 ...post.node.frontmatter,
                 ...post.node.fields
-            }))
-        setItemList(mapToProps)
+            })
+        )
+        if (mapToProps.length > 0) {
+            setItemList(mapToProps)
+        } else {
+            setItemList([{
+                title: 'not found'
+            }])
+        }
     }
 
     function _onBlurInput() {
@@ -72,7 +79,8 @@ export default ({ allPosts, categories }) => {
     }
 
     function _onFocusInput() {
-        findPostByKeyword(keyword)
+        if (keyword > 2)
+            findPostByKeyword(keyword)
     }
 
     useEffect(() => {
