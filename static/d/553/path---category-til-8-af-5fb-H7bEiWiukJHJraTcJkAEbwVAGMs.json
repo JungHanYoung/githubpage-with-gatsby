@@ -1,0 +1,1 @@
+{"errors":[{"message":"Variable \"$category\" of required type \"String!\" was not provided.","locations":[{"line":2,"column":3}]}],"pageContext":{"isCreatedByStatefulCreatePages":false,"posts":[{"id":"f19d9026-89b5-5a1b-9cf1-30329f47e4c2","frontmatter":{"title":"hello TIL","category":"TIL","date":"2019-03-23"},"fields":{"slug":"/posts/TIL/2019-03-23-hello-TIL/"}}]}}
